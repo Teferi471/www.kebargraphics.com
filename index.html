@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebar Graphics | Professional Graphic Designer & Video Editor</title>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background gradient */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating particles background */
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .particle:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 25px; height: 25px; left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 18px; height: 18px; left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 22px; height: 22px; left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { width: 16px; height: 16px; left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { width: 24px; height: 24px; left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { width: 19px; height: 19px; left: 80%; animation-delay: 14s; }
+        .particle:nth-child(9) { width: 21px; height: 21px; left: 90%; animation-delay: 16s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Content overlay to ensure readability */
+        .content-overlay {
+            background: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo.has-image {
+            background: transparent;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255,255,255,0.98);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:not(#home) {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 20px auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-img.placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-img {
+            height: 250px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-img.placeholder {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+        }
+
+        /* Image upload section */
+        .image-upload {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Social Media Links */
+        .social-links {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-link.facebook { background: linear-gradient(135deg, #3b5998, #8b9dc3); }
+        .social-link.instagram { background: linear-gradient(135deg, #e4405f, #f093fb); }
+        .social-link.twitter { background: linear-gradient(135deg, #1da1f2, #0084b4); }
+        .social-link.linkedin { background: linear-gradient(135deg, #0077b5, #00a0dc); }
+        .social-link.youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .social-link.email { background: linear-gradient(135deg, #ea4335, #fbbc05); }
+        .social-link.telegram { background: linear-gradient(135deg, #0088cc, #229ed9); }
+        .social-link.phone { background: linear-gradient(135deg, #25d366, #128c7e); }
+
+        /* Comment Section */
+        .comments-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 20px auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 80px 20px;
+            max-width: 1200px;
+        }
+
+        .comment-form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .comments-list {
+            margin-top: 40px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .comment-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .comment-text {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="background-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <header id="home">
+        <div class="logo-container">
+            <div class="logo" id="headerLogo">
+                <img src="images/logo.png" alt="Kebar Graphics Logo" style="display: none;" id="logoImage">
+                <span id="logoPlaceholder">KG</span>
+            </div>
+            <div class="image-upload">
+                <input type="file" id="logoUpload" class="file-input" accept="image/*" onchange="uploadLogo(event)">
+                <button class="upload-btn" onclick="document.getElementById('logoUpload').click()" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);">
+                    📷 Upload Logo
+                </button>
+            </div>
+        </div>
+        <h1>Kebar Graphics</h1>
+        <p>Professional Graphic Designer & Video Editor</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#comments">Comments</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="profile-img placeholder" id="profileImg">
+                <img src="images/profile.jpg" alt="Kebar Profile" style="display: none;" id="profileImage">
+                <span id="profilePlaceholder">K</span>
+            </div>
+            <div class="about-text">
+                <p>Hello! I'm Kebar, a passionate graphic designer and video editor with over 5 years of experience creating stunning visual solutions. I specialize in brand identity, digital design, video production, and creative storytelling through visual elements.</p>
+                <br>
+                <p>My approach combines creativity with strategic thinking to deliver designs and videos that not only look amazing but also achieve your business goals. I believe great design and compelling video content should be both beautiful and functional.</p>
+                <br>
+                <p><strong>Visit my website:</strong> <a href="https://www.kebargraphics.com" target="_blank" style="color: #667eea; text-decoration: none;">www.kebargraphics.com</a></p>
+                <div class="image-upload">
+                    <input type="file" id="profileUpload" class="file-input" accept="image/*" onchange="uploadProfileImage(event)">
+                    <button class="upload-btn" onclick="document.getElementById('profileUpload').click()">
+                        📷 Upload Profile Photo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="fade-in">
+        <h2>My Services</h2>
+        <div class="services">
+            <div class="service-card" onclick="showServiceDetails('logo')">
+                <div class="service-icon">🎨</div>
+                <h3>Logo Design</h3>
+                <p>Creating memorable brand identities that represent your business values and connect with your audience.</p>
+            </div>
+            <div class="service-card" onclick="showServiceDetails('poster')">
+                <div class="service-icon">📋</div>
+                <h3>Poster Design</h3>
+                <p>Eye-catching posters and promotional materials that grab attention and communicate your message effectively.</p>
+            </div>
+            <div class="service-card" onclick="showServiceDetails('social')">
+                <div class="service-icon">📱</div>
+                <h3>Social Media Design</h3>
+                <p>Engaging social media graphics that boost your online presence and drive audience engagement.</p>
+            </div>
+            <div class="service-card" onclick="showServiceDetails('video')">
+                <div class="service-icon">🎬</div>
+                <h3>Video Editing</h3>
+                <p>Professional video editing services including promotional videos, social media content, and brand storytelling.</p>
+            </div>
+            <div class="service-card" onclick="showServiceDetails('businesscard')">
+                <div class="service-icon">💼</div>
+                <h3>Business Card Design</h3>
+                <p>Professional business cards that make lasting first impressions and represent your brand perfectly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="fade-in">
+        <h2>Portfolio</h2>
+        <div class="portfolio">
+            <div class="portfolio-item" onclick="viewProject(1)">
+                <div class="portfolio-img placeholder" id="portfolio1">
+                    <img src="images/portfolio1.jpg" alt="Corporate Branding" style="display: none;" id="portfolioImage1">
+                    <span id="portfolioPlaceholder1">🏢</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Corporate Branding</h3>
+                    <p>Complete brand identity for tech startup including logo, business cards, and marketing materials.</p>
+                    <div class="image-upload">
+                        <input type="file" id="portfolioUpload1" class="file-input" accept="image/*" onchange="uploadPortfolioImage(event, 1)">
+                        <button class="upload-btn" onclick="document.getElementById('portfolioUpload1').click()">
+                            🖼️ Add Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" onclick="viewProject(2)">
+                <div class="portfolio-img placeholder" id="portfolio2">
+                    <img src="images/portfolio2.jpg" alt="Event Poster Series" style="display: none;" id="portfolioImage2">
+                    <span id="portfolioPlaceholder2">🎪</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Event Poster Series</h3>
+                    <p>Creative poster designs for music festival featuring bold typography and vibrant colors.</p>
+                    <div class="image-upload">
+                        <input type="file" id="portfolioUpload2" class="file-input" accept="image/*" onchange="uploadPortfolioImage(event, 2)">
+                        <button class="upload-btn" onclick="document.getElementById('portfolioUpload2').click()">
+                            🖼️ Add Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" onclick="viewProject(3)">
+                <div class="portfolio-img placeholder" id="portfolio3">
+                    <img src="images/portfolio3.jpg" alt="Social Media Campaign" style="display: none;" id="portfolioImage3">
+                    <span id="portfolioPlaceholder3">📊</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Social Media Campaign</h3>
+                    <p>Instagram and Facebook graphics for fashion brand's seasonal campaign.</p>
+                    <div class="image-upload">
+                        <input type="file" id="portfolioUpload3" class="file-input" accept="image/*" onchange="uploadPortfolioImage(event, 3)">
+                        <button class="upload-btn" onclick="document.getElementById('portfolioUpload3').click()">
+                            🖼️ Add Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" onclick="viewProject(4)">
+                <div class="portfolio-img placeholder" id="portfolio4">
+                    <img src="images/portfolio4.jpg" alt="Promotional Video" style="display: none;" id="portfolioImage4">
+                    <span id="portfolioPlaceholder4">🎥</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Promotional Video</h3>
+                    <p>Dynamic promotional video for tech startup featuring motion graphics and professional editing.</p>
+                    <div class="image-upload">
+                        <input type="file" id="portfolioUpload4" class="file-input" accept="image/*" onchange="uploadPortfolioImage(event, 4)">
+                        <button class="upload-btn" onclick="document.getElementById('portfolioUpload4').click()">
+                            🖼️ Add Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-item" onclick="viewProject(5)">
+                <div class="portfolio-img placeholder" id="portfolio5">
+                    <img src="images/portfolio5.jpg" alt="Business Card Design" style="display: none;" id="portfolioImage5">
+                    <span id="portfolioPlaceholder5">💼</span>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Business Card Design</h3>
+                    <p>Professional business card designs for various industries with modern layouts and premium finishes.</p>
+                    <div class="image-upload">
+                        <input type="file" id="portfolioUpload5" class="file-input" accept="image/*" onchange="uploadPortfolioImage(event, 5)">
+                        <button class="upload-btn" onclick="document.getElementById('portfolioUpload5').click()">
+                            🖼️ Add Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comments" class="comments-section fade-in">
+        <h2>Client Reviews & Comments</h2>
+        
+        <div class="comment-form">
+            <h3>Leave a Review</h3>
+            <form id="commentForm">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email (optional):</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <div class="rating" id="rating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment">Your Review:</label>
+                    <textarea id="comment" name="comment" placeholder="Share your experience working with Kebar Graphics..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <div class="comments-list" id="commentsList">
+            <!-- Sample Comments -->
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author">Sarah Johnson</div>
+                    <div class="comment-date">January 8, 2026</div>
+                </div>
+                <div class="rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <div class="comment-text">
+                    Amazing work on our company logo! Kebar understood our vision perfectly and delivered exactly what we needed. Professional, creative, and fast turnaround. Highly recommended!
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author">Mike Chen</div>
+                    <div class="comment-date">January 5, 2026</div>
+                </div>
+                <div class="rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <div class="comment-text">
+                    Excellent video editing services! The promotional video for our startup turned out fantastic. Great attention to detail and creative input. Will definitely work with Kebar again.
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author">Emma Rodriguez</div>
+                    <div class="comment-date">January 2, 2026</div>
+                </div>
+                <div class="rating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <div class="comment-text">
+                    Beautiful business card design! The quality and creativity exceeded our expectations. Kebar is very professional and responsive. Thank you for the amazing work!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2>Let's Work Together</h2>
+        <div class="contact-content">
+            <p>Ready to bring your vision to life? I'd love to hear about your project and discuss how we can create something amazing together.</p>
+            <p style="margin: 20px 0; font-size: 1.1rem;"><strong>Visit:</strong> <a href="https://www.kebargraphics.com" target="_blank" style="color: #667eea; text-decoration: none;">www.kebargraphics.com</a></p>
+            <p style="margin: 20px 0; font-size: 1.1rem;"><strong>📞 Phone:</strong> <a href="tel:+251912862606" style="color: #667eea; text-decoration: none;">+251 912 862 606</a></p>
+            <button class="contact-btn" onclick="contactMessage()">Get In Touch</button>
+            <button class="contact-btn" onclick="viewPortfolio()">View Full Portfolio</button>
+            
+            <div class="social-links">
+                <a href="https://web.facebook.com/profile.php?id=100090279308054" class="social-link facebook" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/tefeinfo/" class="social-link instagram" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/HGonfa17967" class="social-link twitter" target="_blank" title="Twitter/X">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/teferi-gonfa-9822342b7/" class="social-link linkedin" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.youtube.com/@Eebbaa1" class="social-link youtube" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://t.me/Siifkun2025" class="social-link telegram" target="_blank" title="Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="mailto:kebaradvert@gmail.com" class="social-link email" target="_blank" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <p style="margin-top: 20px; color: #666;">Follow me on social media for daily design inspiration and behind-the-scenes content!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 20px;">
+            <div class="social-links">
+                <a href="https://web.facebook.com/profile.php?id=100090279308054" class="social-link facebook" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/tefeinfo/" class="social-link instagram" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/HGonfa17967" class="social-link twitter" target="_blank" title="Twitter/X">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/teferi-gonfa-9822342b7/" class="social-link linkedin" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.youtube.com/@Eebbaa1" class="social-link youtube" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://t.me/Siifkun2025" class="social-link telegram" target="_blank" title="Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="mailto:kebaradvert@gmail.com" class="social-link email" target="_blank" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <p>&copy; 2026 Kebar Graphics | Professional Graphic Designer & Video Editor | www.kebargraphics.com | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Interactive functions
+        function contactMessage() {
+            const messages = [
+                "Thank you for your interest! I'll get back to you within 24 hours.",
+                "Excited to work with you! Let's create something amazing together.",
+                "Thanks for reaching out! I'm looking forward to discussing your project."
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Create custom modal instead of alert
+            showModal("Contact Request Sent!", randomMessage);
+        }
+
+        function showServiceDetails(service) {
+            const serviceDetails = {
+                logo: "Logo Design includes: Brand research, concept development, 3 initial concepts, unlimited revisions, and final files in all formats (AI, PNG, JPG, SVG).",
+                poster: "Poster Design includes: Creative concept, high-resolution design, print-ready files, and web-optimized versions for digital use.",
+                social: "Social Media Design includes: Custom graphics for all platforms, story templates, highlight covers, and a complete brand style guide.",
+                video: "Video Editing includes: Professional editing, color correction, audio enhancement, motion graphics, transitions, and delivery in multiple formats (MP4, MOV, etc.).",
+                businesscard: "Business Card Design includes: Professional layout design, brand-consistent styling, print-ready files (300 DPI), multiple format options, and both single and double-sided designs."
+            };
+            
+            showModal("Service Details", serviceDetails[service]);
+        }
+
+        function viewProject(projectId) {
+            const projects = {
+                1: "Corporate Branding Project: Complete visual identity including logo design, color palette, typography selection, business card design, letterhead, and brand guidelines document.",
+                2: "Event Poster Series: Creative campaign for summer music festival featuring 5 unique poster designs with consistent branding and eye-catching visuals.",
+                3: "Social Media Campaign: 30-day content calendar with custom graphics, Instagram stories, Facebook posts, and promotional materials for fashion brand.",
+                4: "Promotional Video Project: 2-minute brand video featuring motion graphics, professional voiceover, background music, and seamless transitions for tech startup launch.",
+                5: "Business Card Design Project: Professional business card collection featuring modern layouts, premium paper options, foil stamping, and embossed finishes for various industries."
+            };
+            
+            showModal(`Project ${projectId} Details`, projects[projectId]);
+        }
+
+        function viewPortfolio() {
+            showModal("Full Portfolio", "Visit my complete portfolio and services at:\n\n🌐 www.kebargraphics.com\n\nExplore my full range of design services, client testimonials, and detailed project galleries. Contact me directly through the website for custom quotes and project consultations!");
+        }
+
+        // Social media function
+        function openSocialMedia(platform) {
+            const socialLinks = {
+                facebook: "https://facebook.com/kebar.design",
+                instagram: "https://instagram.com/kebar.design",
+                twitter: "https://twitter.com/kebar_design",
+                linkedin: "https://linkedin.com/in/kebar-design",
+                youtube: "https://youtube.com/@kebar-design"
+            };
+            
+            const messages = {
+                facebook: "Connect with me on Facebook for updates and design tips!",
+                instagram: "Follow my Instagram for daily design inspiration and behind-the-scenes content!",
+                twitter: "Follow me on Twitter for design insights and industry news!",
+                linkedin: "Connect with me on LinkedIn for professional networking!",
+                youtube: "Subscribe to my YouTube channel for design tutorials and process videos!"
+            };
+            
+            showModal(`${platform.charAt(0).toUpperCase() + platform.slice(1)} Profile`, 
+                     `${messages[platform]}\n\nProfile: ${socialLinks[platform]}\n\n(Note: Replace with your actual social media links)`);
+        }
+
+        // Email function
+        function openEmail() {
+            showModal("Contact via Email", 
+                     "Ready to start your project? Send me an email!\n\n📧 Email: your.email@gmail.com\n\nOr click below to open your email client:\n\n(Note: Replace with your actual Gmail address)");
+        }
+
+        // Telegram function
+        function openTelegram() {
+            showModal("Contact via Telegram", 
+                     "Let's chat on Telegram for quick communication!\n\n💬 Telegram: @your_telegram_username\n\nClick to open Telegram:\n\n(Note: Replace with your actual Telegram username or add direct link)");
+        }
+
+        // Image upload functions
+        function uploadProfileImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profileImg = document.getElementById('profileImage');
+                    const placeholder = document.getElementById('profilePlaceholder');
+                    const container = document.getElementById('profileImg');
+                    
+                    profileImg.src = e.target.result;
+                    profileImg.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    container.classList.remove('placeholder');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function uploadLogo(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoImg = document.getElementById('logoImage');
+                    const placeholder = document.getElementById('logoPlaceholder');
+                    const container = document.getElementById('headerLogo');
+                    
+                    logoImg.src = e.target.result;
+                    logoImg.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    container.classList.add('has-image');
+                    
+                    // Save to localStorage for persistence
+                    localStorage.setItem('kebarLogo', e.target.result);
+                    
+                    showModal('Logo Updated!', 'Your logo has been uploaded! \n\nTo make it permanent:\n1. Save your logo as "logo.png" in the images folder\n2. Or it will stay until you clear browser data\n\nFor permanent display, please save the logo file to your images folder.');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load saved logo on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLogo = localStorage.getItem('kebarLogo');
+            if (savedLogo) {
+                const logoImg = document.getElementById('logoImage');
+                const placeholder = document.getElementById('logoPlaceholder');
+                const container = document.getElementById('headerLogo');
+                
+                logoImg.src = savedLogo;
+                logoImg.style.display = 'block';
+                placeholder.style.display = 'none';
+                container.classList.add('has-image');
+            }
+            
+            // Check if logo file exists
+            const logoImg = document.getElementById('logoImage');
+            logoImg.onload = function() {
+                const placeholder = document.getElementById('logoPlaceholder');
+                const container = document.getElementById('headerLogo');
+                
+                placeholder.style.display = 'none';
+                container.classList.add('has-image');
+            };
+        });
+
+        function uploadPortfolioImage(event, portfolioId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const portfolioImg = document.getElementById(`portfolioImage${portfolioId}`);
+                    const placeholder = document.getElementById(`portfolioPlaceholder${portfolioId}`);
+                    const container = document.getElementById(`portfolio${portfolioId}`);
+                    
+                    portfolioImg.src = e.target.result;
+                    portfolioImg.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    container.classList.remove('placeholder');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Custom modal function
+        function showModal(title, message) {
+            // Remove existing modal if any
+            const existingModal = document.querySelector('.custom-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                    <button onclick="closeModal()" class="modal-btn">Close</button>
+                </div>
+            `;
+
+            // Add modal styles
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s ease;
+            `;
+
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 40px;
+                border-radius: 15px;
+                max-width: 500px;
+                margin: 20px;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                animation: slideUp 0.3s ease;
+            `;
+
+            const modalBtn = modal.querySelector('.modal-btn');
+            modalBtn.style.cssText = `
+                padding: 12px 30px;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 1rem;
+                margin-top: 20px;
+                transition: transform 0.2s ease;
+            `;
+
+            modalBtn.onmouseover = () => modalBtn.style.transform = 'translateY(-2px)';
+            modalBtn.onmouseout = () => modalBtn.style.transform = 'translateY(0)';
+
+            document.body.appendChild(modal);
+
+            // Add CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from { transform: translateY(30px); opacity: 0; }
+                    to { transform: translateY(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.custom-modal');
+            if (modal) {
+                modal.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => modal.remove(), 300);
+            }
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('custom-modal')) {
+                closeModal();
+            }
+        });
+
+        // Comment system functionality
+        let selectedRating = 0;
+
+        // Rating system
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    selectedRating = parseInt(this.getAttribute('data-rating'));
+                    updateStars();
+                });
+                
+                star.addEventListener('mouseover', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    highlightStars(rating);
+                });
+            });
+            
+            document.getElementById('rating').addEventListener('mouseleave', function() {
+                updateStars();
+            });
+        });
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.style.color = '#ffd700';
+                } else {
+                    star.style.color = '#ddd';
+                }
+            });
+        }
+
+        function updateStars() {
+            highlightStars(selectedRating);
+        }
+
+        // Comment form submission
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const comment = document.getElementById('comment').value;
+            
+            if (!name || !comment || selectedRating === 0) {
+                showModal('Missing Information', 'Please fill in your name, rating, and comment before submitting.');
+                return;
+            }
+            
+            addComment(name, comment, selectedRating);
+            
+            // Reset form
+            document.getElementById('commentForm').reset();
+            selectedRating = 0;
+            updateStars();
+            
+            showModal('Thank You!', 'Your review has been submitted successfully! Thank you for your feedback.');
+        });
+
+        function addComment(name, comment, rating) {
+            const commentsList = document.getElementById('commentsList');
+            const currentDate = new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const commentHTML = `
+                <div class="comment-item" style="animation: fadeInUp 0.5s ease;">
+                    <div class="comment-header">
+                        <div class="comment-author">${name}</div>
+                        <div class="comment-date">${currentDate}</div>
+                    </div>
+                    <div class="rating">
+                        ${'★'.repeat(rating)}${'☆'.repeat(5-rating)}
+                    </div>
+                    <div class="comment-text">
+                        ${comment}
+                    </div>
+                </div>
+            `;
+            
+            commentsList.insertAdjacentHTML('afterbegin', commentHTML);
+        }
+        const fadeOutStyle = document.createElement('style');
+        fadeOutStyle.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(fadeOutStyle);
+    </script>
+</body>
+</html>""
